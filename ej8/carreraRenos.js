@@ -24,17 +24,23 @@ La vista es isométrica, por lo que los carriles inferiores están desplazados h
  */
 function drawRace(indices, length) {
     let carril = ""; 
+    let indiceCarril=1;
+    let cantidadCarriles=indices.length;
     indices.forEach(indice => {
         let linea = ""; 
+        linea+=" ".repeat(cantidadCarriles)
+        cantidadCarriles--;
         for (let i = 0; i < length; i++) {
             const posicion = indice < 0 ? length + indice : indice;
-            if (i === posicion) {
+            if (i === posicion&&posicion!=0) {
                 linea += "r"; 
-            } else {
+            } 
+            else {
                 linea += "~"; 
             }
         }
-        carril += linea + "\n"; 
+        carril += `${linea} /${indiceCarril}\n`;
+        indiceCarril++;
     });
     return carril; 
 }
